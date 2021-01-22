@@ -1,5 +1,6 @@
 <template>
   <table>
+    <TableHeader v-bind:inspectionInfo="inspectionInfo"/>
     <tr v-for="i in copyArr" v-bind:key="i._id.$oid">
       <th v-if="inspectionInfo.business_name">{{i.business_name}}</th>
       <th v-if="inspectionInfo.business_address">{{i.business_address}}</th>
@@ -13,11 +14,32 @@
 </template>
 
 <script>
+import TableHeader from "@/components/TableHeader";
 export default {
-props: ['info', 'inspectionInfo', 'copyArr'],
+  components: {TableHeader},
+  component() {
+    TableHeader
+  },
+  props: ['info', 'inspectionInfo', 'copyArr'],
 name: "Table",
 methods: {
+    log(){
+      console.log(this.reqS)
+    }
+
 },
+  data(){
+    return{
+      reqS: [
+        'business_name',
+        'business_address',
+        'business_phone_number',
+        'business_city',
+        'inspection_date',
+        'inspection_description',
+        'inspection_type'],
+    }
+  }
 }
 </script>
 

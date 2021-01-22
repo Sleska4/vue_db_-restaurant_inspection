@@ -9,37 +9,30 @@
           <div class="position">
           <button class="settings-btn" v-on:click="toggle">Редактировать таблицу</button>
           <div class="settings" id="menu">
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'business_name'"
                 v-bind:text="'Наименование организации'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'business_address'"
                 v-bind:text="'Адрес организации'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'business_city'"
                 v-bind:text="'Город организации'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'business_phone_number'"
                 v-bind:text="'Номер организации'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'inspection_date'"
                 v-bind:text="'Дата инспекции'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'inspection_description'"
                 v-bind:text="'Статус инспекции'"/>
-
             <MenuElements
                 v-bind:inspectionInfo="inspectionInfo"
                 v-bind:elem="'inspection_type'"
@@ -52,7 +45,10 @@
         </th>
       </tr>
     </table>
-    <Table v-bind:info="info" v-bind:inspectionInfo="inspectionInfo" v-bind:copyArr="copyArr"/>
+    <Table v-bind:info="info"
+           v-bind:inspectionInfo="inspectionInfo"
+           v-bind:copyArr="copyArr"
+      />
     <Length v-bind:copyArr="copyArr"/>
   </div>
 </template>
@@ -77,7 +73,6 @@ export default {
     return{
       info: null,
       inspectionInfo: {
-        id: false,
         business_name: true,
         business_address: true,
         business_phone_number: false,
@@ -88,7 +83,6 @@ export default {
       },
       copyArr: null,
       menu: false,
-      test: 'business_address'
     }
   },
   mounted () {
