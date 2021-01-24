@@ -33,10 +33,10 @@
 
 <script>
 import data from './json.json'
-import Table from "@/components/Table";
-import Search from "@/components/Search";
-import MenuElements from "@/components/MenuElements";
-import Length from "@/components/Length";
+import Table from "@/components/Table/Table";
+import Search from "@/components/Search/Search";
+import MenuElements from "@/components/Menu/MenuElements";
+import Length from "@/components/Length/Length";
 
 
 export default {
@@ -98,7 +98,6 @@ export default {
       this.info = [];
     }
     this.copyArr = JSON.parse(JSON.stringify(this.info));
-    console.log(this.info)
   },
   methods: {
     search(e){

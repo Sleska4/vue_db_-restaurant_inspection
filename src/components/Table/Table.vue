@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import TableElem from "@/components/TableElem";
-import TableHeader from "@/components/TableHeader";
+import TableElem from "@/components/Table/TableElem";
+import TableHeader from "@/components/Table/TableHeader";
 export default {
   components: {TableHeader, TableElem},
   component() {
