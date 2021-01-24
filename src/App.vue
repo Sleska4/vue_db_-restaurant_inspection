@@ -7,36 +7,13 @@
         </th>
         <th class="middle-th">
           <div class="position">
-          <button class="settings-btn" v-on:click="toggle">Редактировать таблицу</button>
+          <button class="settings-btn" v-on:click="toggle()">Редактировать таблицу</button>
           <div class="settings" id="menu">
             <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'business_name'"
-                v-bind:text="'Наименование организации'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'business_address'"
-                v-bind:text="'Адрес организации'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'business_city'"
-                v-bind:text="'Город организации'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'business_phone_number'"
-                v-bind:text="'Номер организации'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'inspection_date'"
-                v-bind:text="'Дата инспекции'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'inspection_description'"
-                v-bind:text="'Статус инспекции'"/>
-            <MenuElements
-                v-bind:inspectionInfo="inspectionInfo"
-                v-bind:elem="'inspection_type'"
-                v-bind:text="'Тип инспекции'"/>
+                v-for="i in inspectionInfo"
+                v-bind:key="i.id"
+                v-bind:inspectionInfo="i"
+            />
           </div>
           </div>
         </th>
@@ -48,6 +25,7 @@
     <Table v-bind:info="info"
            v-bind:inspectionInfo="inspectionInfo"
            v-bind:copyArr="copyArr"
+           v-bind:infoKeys="Object.keys(inspectionInfo)"
       />
     <Length v-bind:copyArr="copyArr"/>
   </div>
@@ -71,30 +49,56 @@ export default {
   },
   data (){
     return{
-      info: null,
+      info: [...data],
       inspectionInfo: {
-        business_name: true,
-        business_address: true,
-        business_phone_number: false,
-        business_city: true,
-        inspection_date: true,
-        inspection_description: true,
-        inspection_type: false
+        'business_name': {
+          'visibility': true,
+          'textContent': 'Название организации',
+          id: 1},
+
+        'business_address': {
+          'visibility': true,
+          'textContent': 'Адрес организации',
+          id: 2},
+
+        'business_phone_number': {
+          'visibility': false,
+          'textContent': 'Номер организации',
+          id: 3},
+
+        'business_city': {
+          'visibility': true,
+          'textContent': 'Город',
+          id: 4},
+
+        'inspection_date': {
+          'visibility': true,
+          'textContent': 'Дата инспекции',
+          id: 5},
+
+        'inspection_description': {
+          'visibility': true,
+          'textContent': 'Статус инспекции',
+          id: 6},
+
+        'inspection_type': {
+          'visibility': false,
+          'textContent': 'Тип инспекции',
+          id: 7}
       },
       copyArr: null,
       menu: false,
     }
   },
   mounted () {
-    /*fetch('http://localhost:3001/content\n')                 В папке serve отредактированный.
-        .then(res => res.json())
-        .then(json => {
-          this.info = json;
-          this.copyArr = JSON.parse(JSON.stringify(this.info))
-        });*/
-
-        this.info = data;
-        this.copyArr = JSON.parse(JSON.stringify(this.info))
+    if(data){
+      this.info = [...data];
+    } else{
+      alert('При загрузки базы данных возникла ошибка. Повторите попытку позже.');
+      this.info = [];
+    }
+    this.copyArr = JSON.parse(JSON.stringify(this.info));
+    console.log(this.info)
   },
   methods: {
     search(e){

@@ -1,45 +1,29 @@
 <template>
-  <table>
-    <TableHeader v-bind:inspectionInfo="inspectionInfo"/>
-    <tr v-for="i in copyArr" v-bind:key="i._id.$oid">
-      <th v-if="inspectionInfo.business_name">{{i.business_name}}</th>
-      <th v-if="inspectionInfo.business_address">{{i.business_address}}</th>
-      <th v-if="inspectionInfo.business_phone_number">{{i.business_phone_number}}</th>
-      <th v-if="inspectionInfo.business_city">{{i.business_city}}</th>
-      <th v-if="inspectionInfo.inspection_date">{{i.inspection_date}}</th>
-      <th v-if="inspectionInfo.inspection_description">{{i.inspection_description}}</th>
-      <th v-if="inspectionInfo.inspection_type">{{i.inspection_type}}</th>
-    </tr>
-  </table>
+  <div>
+    <table>
+      <tr>
+        <TableHeader v-for="i in inspectionInfo" v-bind:key="i.id"
+                     v-bind:inspectionInfo="i"/>
+      </tr>
+      <tr v-for="i in copyArr"
+          v-bind:key="i._id.$oid">
+        <TableElem v-for="j in infoKeys" v-bind:key="i._id.$oid + j"
+                   v-bind:content="i[j]"
+                   v-bind:inspectionInfo="inspectionInfo[j].visibility"/>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
+import TableElem from "@/components/TableElem";
 import TableHeader from "@/components/TableHeader";
 export default {
-  components: {TableHeader},
+  components: {TableHeader, TableElem},
   component() {
-    TableHeader
   },
-  props: ['info', 'inspectionInfo', 'copyArr'],
+  props: ['info', 'inspectionInfo', 'copyArr', 'infoKeys'],
 name: "Table",
-methods: {
-    log(){
-      console.log(this.reqS)
-    }
-
-},
-  data(){
-    return{
-      reqS: [
-        'business_name',
-        'business_address',
-        'business_phone_number',
-        'business_city',
-        'inspection_date',
-        'inspection_description',
-        'inspection_type'],
-    }
-  }
 }
 </script>
 

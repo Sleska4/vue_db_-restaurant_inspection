@@ -1,13 +1,5 @@
 <template>
-    <tr>
-      <th v-if="inspectionInfo.business_name"><strong>Название организации</strong></th>
-      <th v-if="inspectionInfo.business_address"><strong>Адрес организации</strong></th>
-      <th v-if="inspectionInfo.business_phone_number"><strong>Номер организации</strong></th>
-      <th v-if="inspectionInfo.business_city"><strong>Город</strong></th>
-      <th v-if="inspectionInfo.inspection_date"><strong>Дата инспекции</strong></th>
-      <th v-if="inspectionInfo.inspection_description"><strong>Статус инспекции</strong></th>
-      <th v-if="inspectionInfo.inspection_type">Тип инспекции</th>
-    </tr>
+      <th v-if="inspectionInfo.visibility"><strong>{{inspectionInfo.textContent}}</strong></th>
 </template>
 
 

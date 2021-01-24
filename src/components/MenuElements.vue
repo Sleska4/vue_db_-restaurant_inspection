@@ -1,15 +1,16 @@
 <template>
-  <div v-on:click="inspectionInfo[elem] = !inspectionInfo[elem]">
-    <span class="elem" v-if="this.inspectionInfo[elem]">✔</span>
-    <span class="elem" v-else>✘</span>
-    <span>{{this.text}}</span>
+  <div v-on:click="inspectionInfo.visibility = !inspectionInfo.visibility">
+    <span v-if="this.inspectionInfo.visibility">✔</span>
+    <span v-else>✘</span>
+    <span>{{inspectionInfo.textContent}}</span>
   </div>
 </template>
 
 <script>
 export default {
 name: "MenuElements",
-  props:['elem', 'inspectionInfo', 'text']
+  props:['inspectionInfo'],
+
 }
 </script>
 
